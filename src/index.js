@@ -3,6 +3,11 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import Sample from "./api/Sample";
+import Sample2 from "./api/Sample2";
+import Reply from "./api/Reply";
+import BoardList from "./api/BoardList";
+import 'bootstrap/dist/css/bootstrap.css'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

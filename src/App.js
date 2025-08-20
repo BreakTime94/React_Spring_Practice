@@ -1,24 +1,23 @@
 import logo from './logo.svg';
 import './App.css';
+import {BrowserRouter, Route, Routes} from "react-router-dom";
+import BoardList from "./api/BoardList";
+import BoardView from "./api/BoardView";
+import BoardWrite from "./api/BoardWrite";
+import Modify from "./api/Modify";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <div className={"container"}>
+        <BrowserRouter>
+          <Routes>
+            <Route index element={<BoardList/>} i></Route>
+            <Route path={"board/write"} element={<BoardWrite/>}/>
+            <Route path={"board/:bno"} element={<BoardView/>}></Route>
+            <Route path={"board/modify"} element={<Modify/>}></Route>
+          </Routes>
+        </BrowserRouter>
+      </div>
   );
 }
 
