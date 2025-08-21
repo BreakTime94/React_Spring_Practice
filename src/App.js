@@ -14,7 +14,7 @@ function App() {
             <Route index element={<BoardList/>} i></Route>
             <Route path={"board/write"} element={<BoardWrite/>}/>
             <Route path={"board/:bno"} element={<BoardView/>}></Route>
-            <Route path={"board/modify"} element={<Modify/>}></Route>
+            <Route path={"board/modify/:bno"} element={<Modify/>}></Route>
           </Routes>
         </BrowserRouter>
       </div>

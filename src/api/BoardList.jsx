@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react";
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
 
+
 function BoardList(props) {
   const [data, setData] = useState(null)
   const [pageInfo, setPageInfo] = useState([{
@@ -25,7 +26,12 @@ function BoardList(props) {
 
   return(
       <div>
-        <table className={"table"}>
+        <div className={"flex-row"}>
+          <button className={"btn btn-primary"} onClick={() => {
+            navigate(`board/write`)
+          }}>글 작성</button>
+        </div>
+        <table className={"table table-hover"}>
           <thead>
             <tr>
               <th>글번호</th>
@@ -33,11 +39,11 @@ function BoardList(props) {
               <th>작성자</th>
             </tr>
           </thead>
-          <tbody className={"cursor-pointer"}>
+          <tbody>
           {Array.isArray(data?.list) && data.list.map(d => {
             return (<tr onClick={() => {
               navigate(`/board/${d.bno}`)
-            }}>
+            }} className={"clickpoint"}>
               <td key={d.bno}>{d.bno}</td>
               <td >{d.title}</td>
               <td>{d.writerName}</td>

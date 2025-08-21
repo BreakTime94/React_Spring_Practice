@@ -8,6 +8,7 @@ import Sample2 from "./api/Sample2";
 import Reply from "./api/Reply";
 import BoardList from "./api/BoardList";
 import 'bootstrap/dist/css/bootstrap.css'
+import './api/custom.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
