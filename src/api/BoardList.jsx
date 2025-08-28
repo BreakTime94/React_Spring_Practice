@@ -12,17 +12,24 @@ function BoardList(props) {
     keyword: '',
   }])
   const navigate = useNavigate();
+  console.log("pageInfo 확인용", pageInfo);
+
+  console.log("pageInfo의 page 확인용",pageInfo[0].page);
+
+  //console.log("data.pageList의 값은? ", data.pageList);
 
   useEffect(() => {
-    axios.get(`http://localhost:8080/boardrest/list`)
+    // page=2&size=10&type=&keyword=
+    axios.get(`http://localhost:8080/boardrest/list?page=${pageInfo[0].page}&size=10&type=${pageInfo[0].type}&keyword=${pageInfo[0].keyword}`)
         .then((res) => {
           console.log("Content-Type: ", res.headers["content-type"]);
+          console.log(res.data);
           setData(res.data);
         })
         .catch((error) => {
           console.log("error: ", error )
         });
-  }, []);
+  }, [pageInfo]);
 
   return(
       <div>
@@ -51,6 +58,22 @@ function BoardList(props) {
           })}
           </tbody>
         </table>
+        <div className={"flex-row "}>
+          <div className={"m-auto m-0"}>
+            {data && data.start === 1 ? null : <button name={"prev"}></button>}
+            {data && data.pageList.map((page) => {
+              console.log(page)
+              return <button name={"page"} onClick={(event) => {
+                setPageInfo(prev =>
+                    prev.map((item, index) => {
+                      return index === 0 ? {...item, page: page} : item ;
+                    })
+                )
+              }}>{page}</button>;
+            })}
+            <button name={"next"}><i className="fa-solid fa-arrow-right"></i></button>
+          </div>
+        </div>
       </div>
       // <div className={"flex-row"}>
       //   <h1>Board Data</h1>
